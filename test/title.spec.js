@@ -1,4 +1,3 @@
-const puppeteer = require('puppeteer');
 const base = require('./../src/base');
 const title = require('./../src/title')
 const URL = 'https://www.quikr.com/mumbai';
@@ -11,9 +10,10 @@ beforeAll(async () => {
 describe("Website", () => {
 
   beforeEach(() => {
-    jest.setTimeout(10000);
+    jest.setTimeout(20000);
   });
 
+  // Promise then implementation
   test('Page has title with thenable', (done) => {
     base.open(browser, URL)
       .then((p) => {
@@ -27,6 +27,7 @@ describe("Website", () => {
       });
   });
 
+  // Async await implementation
   test('Page has title with async', async (done) => {
     const page = await base.open(browser, URL);
     const t = await title.get(page);

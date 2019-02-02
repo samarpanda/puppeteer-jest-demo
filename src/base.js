@@ -20,7 +20,7 @@ async function getPage(browser) {
 
 exports.open = async (browser, url) => {
   let page = await getPage(browser);
-  const [response] = await Promise.all([
+  await Promise.all([
     page.goto(url),
     page.waitForNavigation()
   ]);
