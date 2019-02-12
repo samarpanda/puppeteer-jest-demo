@@ -21,7 +21,14 @@ describe("Google search", () => {
     const linksObjArr = await google.getOrganicResult(page);
     expect(linksObjArr.length).toBe(10);
     done();
-  })
+  });
+
+  test('Crawl page and extract data', async (done) => {
+    const url = 'https://www.quikr.com/bangalore';
+    const pdata = await google.crawlPage(browser, url);
+    expect(pdata.title).not.toBe(null);
+    done();
+  });
 });
 
 afterAll(async () => {

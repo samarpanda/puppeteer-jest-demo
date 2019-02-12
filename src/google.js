@@ -1,10 +1,13 @@
 // Google search input field
+/**
+ * Get search input field
+ * @param {Promise} page 
+ */
 async function getSearchInput (page) {
   const qSelector = 'input.gLFyf.gsfi';
   const searchInput = await page.$(qSelector);
   return searchInput;
 }
-
 exports.getSearchInput = getSearchInput;
 
 exports.search = async (page, query) => {
@@ -29,3 +32,50 @@ exports.getOrganicResult = async (page) => {
   }, resultSelector);
   return linksObj;
 };
+
+exports.crawlPage = async (browser, url) => {
+  const newPage = await browser.newPage();
+
+  await newPage.setRequestInterception(true);
+
+  // All requests aborted except document call
+  await newPage.on('request', interceptedReq => {
+    if(interceptedReq.url() === url) {
+      interceptedReq.continue();
+    } else {
+      interceptedReq.abort();
+    }
+  });
+
+  await newPage.goto(url)
+    .catch(async () => {
+      await newPage.close();
+    });
+  
+  let pageObj = await getPageData(newPage);
+  pageObj.URL = url;
+
+  await newPage.close();
+  return pageObj;
+};
+
+async function getPageData(newPage) {
+  const pobj = {};
+  pobj.title = await newPage.evaluate( x => {
+    return document.title
+  }, 0);
+  pobj.desc = await newPage.evaluate(() => {
+    return document.querySelector('meta[name="description"]') ? document.querySelector('meta[name="description"]').content : ''
+  }, 0);
+  pobj.canonical = await newPage.evaluate(() => {
+    return document.querySelector('link[rel="canonical"]') ? document.querySelector('link[rel="canonical"]').href : ''
+  }, 0);
+  pobj.amp = await newPage.evaluate(() => {
+    return document.querySelector('link[rel="amphtml"]') ? document.querySelector('link[rel="amphtml"]').href : ''
+  }, 0);
+  pobj.links = await newPage.evaluate(() => {
+      return document.querySelectorAll('a') ? document.querySelectorAll('a').length : ''
+  }, 0)
+  return pobj;
+}
+exports.getPageData = getPageData;
