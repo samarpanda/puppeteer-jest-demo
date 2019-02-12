@@ -1,7 +1,7 @@
 // Google search input field
 /**
  * Get search input field
- * @param {Promise} page 
+ * @param {any} page 
  */
 async function getSearchInput (page) {
   const qSelector = 'input.gLFyf.gsfi';
@@ -61,7 +61,7 @@ exports.crawlPage = async (browser, url) => {
 
 async function getPageData(newPage) {
   const pobj = {};
-  pobj.title = await newPage.evaluate( x => {
+  pobj.title = await newPage.evaluate( () => {
     return document.title
   }, 0);
   pobj.desc = await newPage.evaluate(() => {
