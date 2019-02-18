@@ -18,9 +18,8 @@ describe("Google Jobs search", () => {
   test('Has jobs cards result', async (done) => {
     const page = await base.open(browser, URL);
     await google.search(page, query);
-
     const data = await jobs.hasCardResult(page);
-    expect(data).toBe(true);
+    expect(data).toBe(2);
     done();
   });
 });
