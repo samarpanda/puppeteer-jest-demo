@@ -3,9 +3,8 @@ exports.hasCardResult = async (page) => {
   await page.waitForSelector(resultSelector);
 
   const data = await page.evaluate(() => {
-    return document.getElementsByTagName('g-card');
+    return document.getElementsByTagName('g-card').length;
   }, 0);
 
   return data;
 }
-
