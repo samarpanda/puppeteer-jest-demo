@@ -15,8 +15,7 @@ describe("Google Jobs search", () => {
     jest.setTimeout(10000);
   });
 
-  // Async await implementation
-  test('Get jobs card result', async (done) => {
+  test('Has jobs cards result', async (done) => {
     const page = await base.open(browser, URL);
     await google.search(page, query);
 

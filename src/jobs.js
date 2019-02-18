@@ -1,5 +1,4 @@
-
-exports.getCardsResult = async (page) => {
+exports.hasCardResult = async (page) => {
   const resultSelector = 'g-card';
   await page.waitForSelector(resultSelector);
 
@@ -9,3 +8,4 @@ exports.getCardsResult = async (page) => {
 
   return data;
 }
+
