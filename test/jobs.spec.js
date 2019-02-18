@@ -20,7 +20,7 @@ describe("Google Jobs search", () => {
     await google.search(page, query);
 
     const data = await jobs.hasCardResult(page);
-    expect(data).toBe(1);
+    expect(data).toBe(true);
     done();
   });
 });

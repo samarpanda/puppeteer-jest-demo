@@ -1,10 +1,10 @@
 exports.hasCardResult = async (page) => {
-  const resultSelector = 'g-card';
+  const resultSelector = '.bkWMgd';
   await page.waitForSelector(resultSelector);
 
-  const data = await page.evaluate(() => {
-    return document.getElementsByTagName('g-card').length;
-  }, 0);
-
+  const data = await page.evaluate((resultSelector) => {
+    return document.querySelectorAll(resultSelector).length > 1
+    && document.getElementsByTagName('g-card').length > 0;
+  }, resultSelector);
   return data;
 }
