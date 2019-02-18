@@ -4,7 +4,8 @@
   "description": "Puppeteer jest demo",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "jobs": "jest -t 'Google jobs search'"
   },
   "dependencies": {
     "puppeteer": "^1.11.0"
