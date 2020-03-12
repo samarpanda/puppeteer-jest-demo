@@ -24,17 +24,25 @@ async function removeIntercept(page) {
   await page.removeListener('request', logRequest);
 }
 
-function logRequest(interceptedReq) {
-  if (interceptedReq.url() === 'https://analytics1.quikr.com/events') {
-    // console.log(`A request was made: ${interceptedReq.url()}`);
-    // console.log(interceptedReq.postData());
-    reqArr.push(interceptedReq.postData());
-    interceptedReq.abort();
+function logRequest(req) {
+  if (req.url() === 'https://analytics1.quikr.com/events') {
+    let data = req.postData();
+    data = mockDynamicData(data);
+    reqArr.push(data);
+    req.abort();
   } else if (
-    interceptedReq.url().endsWith('.webp') ||
-    interceptedReq.url().endsWith('.png') ||
-    interceptedReq.url().endsWith('.jpg')
+    req.url().endsWith('.webp') ||
+    req.url().endsWith('.png') ||
+    req.url().endsWith('.jpg')
   ) {
-    interceptedReq.abort();
-  } else interceptedReq.continue();
+    req.abort();
+  } else req.continue();
+}
+
+function mockDynamicData(data) {
+  let res = JSON.parse(data);
+  res.cookie_id = '7300a5c3-2136-4384-8f52-c09fa4b182e5';
+  res.events[0].event_time_epoc_ms = 1583990619717;
+  res.events[0].event_id = '6edf5f52-aa2c-42b1-9ad2-27d9ed7d2af8';
+  return res;
 }

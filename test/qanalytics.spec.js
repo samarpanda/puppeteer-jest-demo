@@ -16,7 +16,7 @@ describe('Quikr search', () => {
   test('Get search input field', async done => {
     const page = await base.open(browser, URL);
     const result = await quikr.search(page, query);
-    expect(result.length).toBe(2);
+    expect(result).toMatchSnapshot();
     done();
   });
 });
