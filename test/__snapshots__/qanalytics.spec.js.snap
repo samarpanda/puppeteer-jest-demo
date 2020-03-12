@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Quikr search Get search input field 1`] = `
+Array [
+  Object {
+    "cookie_id": "7300a5c3-2136-4384-8f52-c09fa4b182e5",
+    "device_info": Object {
+      "browser_agent": "5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    },
+    "events": Array [
+      Object {
+        "city_id": "1",
+        "city_name": "www",
+        "event_id": "6edf5f52-aa2c-42b1-9ad2-27d9ed7d2af8",
+        "event_name": "Search",
+        "event_time_epoc_ms": 1583990619717,
+      },
+    ],
+    "page_info": Object {
+      "ref_url": "",
+      "url": "https://www.quikr.com/",
+    },
+    "property": "Quikr",
+    "source": "Msite",
+  },
+  Object {
+    "cookie_id": "7300a5c3-2136-4384-8f52-c09fa4b182e5",
+    "device_info": Object {
+      "browser_agent": "5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1",
+    },
+    "events": Array [
+      Object {
+        "city": "India",
+        "city_id": "1",
+        "event_id": "6edf5f52-aa2c-42b1-9ad2-27d9ed7d2af8",
+        "event_name": "Home_Page",
+        "event_time_epoc_ms": 1583990619717,
+      },
+    ],
+    "page_info": Object {
+      "ref_url": "",
+      "url": "https://www.quikr.com/",
+    },
+    "property": "Quikr",
+    "source": "Msite",
+  },
+]
+`;
