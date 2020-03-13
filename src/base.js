@@ -1,7 +1,4 @@
-// import puppeteer from 'puppeteer';
 const puppeteer = require('puppeteer');
-const devices = require('puppeteer/DeviceDescriptors');
-const iPhonex = devices['iPhone X'];
 
 var options = {
   mobile: {
