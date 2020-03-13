@@ -1,3 +1,5 @@
+const devices = require('puppeteer/DeviceDescriptors');
+const iPhonex = devices['iPhone X'];
 let reqArr = [];
 
 async function getSearchInputSelector() {
@@ -5,6 +7,7 @@ async function getSearchInputSelector() {
 }
 
 exports.search = async (page, query) => {
+  await page.emulate(iPhonex);
   const searchSelector = await getSearchInputSelector();
   await page.setRequestInterception(true);
   await addIntercept(page);
